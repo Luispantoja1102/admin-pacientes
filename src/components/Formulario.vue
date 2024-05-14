@@ -67,6 +67,7 @@
                     Nombre Mascota
                 </label>
                 <input id="mascota" type="text" placeholder="Nombre de la mascota" class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
+                :value="nombre"
                 @input="$emit('update:nombre', $event.target.value)"
                 >
             </div> 
@@ -77,6 +78,7 @@
                 </label>
                 <input id="propietario" type="text" placeholder="Nombre del propietario" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
+                :value="propietario"
                 @input="$emit('update:propietario', $event.target.value)"
                 >
 
@@ -88,6 +90,7 @@
                 </label>
                 <input id="email" type="text" placeholder="Email del Propietario" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
+                :value="email"
                 @input="$emit('update:email', $event.target.value)"
                 >
             </div> 
@@ -98,6 +101,7 @@
                 </label>
                 <input id="alta" type="date" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
+                :value="alta"
                 @input="$emit('update:alta', $event.target.value)"
                 >
             </div> 
@@ -108,6 +112,7 @@
                 </label>
                 <textarea id="sintomas" type="text" placeholder="Describe los sintomas" 
                     class="border-2 w-full p-2 placeholder-gray-400 rounded-md h-40" 
+                    :value="sintomas"
                     @input="$emit('update:sintomas', $event.target.value)"
                 />
             </div> 
