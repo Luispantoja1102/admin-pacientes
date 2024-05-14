@@ -7,16 +7,34 @@
         mensaje: ''
     })
 
-    const paciente = reactive ({
-        nombre: '',
-        propietario: '',
-        email: '',
-        alta: '',
-        sintomas: ''
     
+    defineEmits(['update:nombre', 'update:propietario', 'update:email', 'update:alta', 'update:sintomas'])
+    
+    const props = defineProps({
+        nombre:{
+            type: String,
+            required: true
+        },
+        propietario:{
+            type: String,
+            required: true
+        },
+        email:{
+            type: String,
+            required: true
+        },
+        alta:{
+            type: String,
+            required: true
+        },
+        sintomas:{
+            type: String,
+            required: true
+        }
     })
+    
     const validar= ()=> {
-        if(Object.values(paciente).includes('')){
+        if(Object.values(props).includes('')){
             alerta.mensaje = 'Todos los campos son obligatorios'
             alerta.tipo = 'error'
             return
@@ -43,12 +61,14 @@
         
         <form class="bg-white shadow-md rounded-lg py-10 px-5 mb-10" 
             @submit.prevent="validar">
+
             <div class="mb-5">
                 <label for="mascota" class="block text-gray-700 uppercase font-bold">
                     Nombre Mascota
                 </label>
                 <input id="mascota" type="text" placeholder="Nombre de la mascota" class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
-                v-model="paciente.nombre">
+                @input="$emit('update:nombre', $event.target.value)"
+                >
             </div> 
 
             <div class="mb-5">
@@ -57,7 +77,8 @@
                 </label>
                 <input id="propietario" type="text" placeholder="Nombre del propietario" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
-                v-model="paciente.propietario">
+                @input="$emit('update:propietario', $event.target.value)"
+                >
 
             </div> 
 
@@ -67,7 +88,8 @@
                 </label>
                 <input id="email" type="text" placeholder="Email del Propietario" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
-                v-model="paciente.email">
+                @input="$emit('update:email', $event.target.value)"
+                >
             </div> 
 
             <div class="mb-5">
@@ -76,7 +98,8 @@
                 </label>
                 <input id="alta" type="date" 
                 class="border-2 w-full p-2 placeholder-gray-400 rounded-md"
-                v-model="paciente.alta">
+                @input="$emit('update:alta', $event.target.value)"
+                >
             </div> 
 
             <div class="mb-5">
@@ -85,7 +108,7 @@
                 </label>
                 <textarea id="sintomas" type="text" placeholder="Describe los sintomas" 
                     class="border-2 w-full p-2 placeholder-gray-400 rounded-md h-40" 
-                    v-model="paciente.sintomas"
+                    @input="$emit('update:sintomas', $event.target.value)"
                 />
             </div> 
 
