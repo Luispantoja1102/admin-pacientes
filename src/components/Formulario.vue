@@ -21,7 +21,10 @@
             alerta.tipo = 'error'
             return
         }
-        console.log('Validando')
+        else{
+            alerta.mensaje = 'Paciente registrado correctamente'
+            alerta.tipo = 'exito'
+        }
     }
     
 </script>
