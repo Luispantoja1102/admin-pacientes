@@ -2,6 +2,7 @@
  import { ref, reactive } from 'vue'
  import Header from './components/Header.vue';
  import Formulario from './components/Formulario.vue';
+ import Paciente from './components/Paciente.vue';
 
     const pacientes = ref([])
 
@@ -37,7 +38,9 @@
       <div class="md:w-1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">Administra tus Pacientes</h3>
         <div v-if="pacientes.length >0">
-
+          <Paciente
+            v-for="paciente in pacientes" :paciente="paciente"
+          />
 
         </div>
         <p v-else class="text-center mt-20 text 2xl">No hay pacientes</p>
