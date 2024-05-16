@@ -39,11 +39,17 @@
             alerta.tipo = 'error'
             return
         }
-        else{
-            alerta.mensaje = 'Paciente registrado correctamente'
-            emit('guardar-paciente')
-            alerta.tipo = 'exito'
-        }
+        emit('guardar-paciente')
+        alerta.mensaje = 'Paciente registrado correctamente'
+        alerta.tipo = 'exito'
+
+        setTimeout(() =>{
+            Object.assign(alerta, {
+                mensaje: '',
+                tipo: ''
+            })
+        }, 3000)
+        
     }
     
 </script>
