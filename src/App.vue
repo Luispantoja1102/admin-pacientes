@@ -16,6 +16,11 @@
         sintomas: ''
     
     })
+
+    const actualizarPaciente = (id) =>{
+      const pacienteEditar = pacientes.value.filter(paciente => paciente.id === id)[0]
+      Object.assign(paciente, pacienteEditar)
+    }
     
     const guardarPaciente = () => {
       pacientes.value.push({ ...paciente, id: uid() })
@@ -57,6 +62,7 @@
           <Paciente
             v-for="paciente in pacientes" 
             :paciente="paciente"
+            @actualizar-paciente="actualizarPaciente"
           />
         </div>
         <p v-else class="text-center mt-20 text 2xl">No hay pacientes</p>
