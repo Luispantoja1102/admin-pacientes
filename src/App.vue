@@ -7,6 +7,7 @@
 
     const pacientes = ref([])
 
+    
     const paciente = reactive ({
         id: null,
         nombre: '',
