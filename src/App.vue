@@ -22,20 +22,36 @@
       const pacienteEditar = pacientes.value.filter(paciente => paciente.id === id)[0]
       Object.assign(paciente, pacienteEditar)
     }
-    
-    const guardarPaciente = () => {
-      pacientes.value.push({ ...paciente, id: uid() })
 
-      //otra forma de hacerlo
+    const elimintarPaciente = (id)=>{
+      pacientes.value = pacientes.value.filter(paciente => paciente.id !== id)
+    }
+
+    const guardarPaciente = () => {
+
+      if(paciente.id){
+        const {id} = paciente
+        const i = pacientes.value.findIndex((pacienteState) => pacienteState.id === id)
+        pacientes.value[i] = {...paciente}
+      }
+      else{
+        pacientes.value.push({ 
+        ...paciente, 
+        id: uid() })
+      }
+
+      //Limpiar formulario al guardar
       Object.assign(paciente,{
         nombre: '',
         propietario: '',
         email: '',
         alta: '',
-        sintomas: ''
+        sintomas: '',
+        id: null
       })
-      
     }
+
+
 
 
 
@@ -52,6 +68,7 @@
       v-model:alta="paciente.alta"
       v-model:sintomas="paciente.sintomas"
       @guardar-paciente="guardarPaciente"
+      :id="paciente.id"
       />
       <div class="md:w-1/2 md:h-screen overflow-y-scroll">
         <h3 class="font-black text-3xl text-center">Administra tus Pacientes</h3>
@@ -64,6 +81,7 @@
             v-for="paciente in pacientes" 
             :paciente="paciente"
             @actualizar-paciente="actualizarPaciente"
+            @eliminar-paciente="elimintarPaciente"
           />
         </div>
         <p v-else class="text-center mt-20 text 2xl">No hay pacientes</p>
